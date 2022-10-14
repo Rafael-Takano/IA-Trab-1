@@ -3,14 +3,14 @@
 
 # 
 #
-#
-# Vitor Amim  11218772
+# Rafael Kuhn Takano    11200459
+# Vitor Amim            11218772
 
 #np.random.shuffle(aux)
 import random
 import numpy as np
 
-n = 10
+n = 7
 k = 2
 
 def generate_vertices(n):
@@ -58,4 +58,9 @@ def generate_edges(n, k):
         edgesMatrix.append(edges)
     print(edgesMatrix)
 
+def generate_knn_graph(n,k):
+    vertice_list = generate_vertices(n)
+    edge_list = generate_edges(n,k)
+    return vertice_list,edge_list
+    
 generate_edges(n, k)
