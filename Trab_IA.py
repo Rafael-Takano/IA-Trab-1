@@ -6,20 +6,26 @@
 # Rafael Kuhn Takano    11200459
 # Vitor Amim            11218772
 
-#np.random.shuffle(aux)
+
 import random
 import numpy as np
 import search_algorithms
 import graphknn  
 
-n, k = 50,7
+n, k = 5000, 7
 v, e = graphknn.generate_knn_graph(n,k)
-start_node, end_node = 0, 49
+start_node, end_node = 0, 1
 path_bfs, dist_bfs = search_algorithms.BFS(v,e,start_node,end_node)
-path_gbs, dist_gbs = search_algorithms.Best_First(v,e,start_node,end_node)
-path_dfs, dist_dfs = search_algorithms.DFS(v,e,start_node,end_node)
-
-
 print(path_bfs, dist_bfs)
-print(path_gbs, dist_gbs)
+path_bfs, dist_bfs = search_algorithms.BFS(v,e,start_node+1,end_node+1)
+print(path_bfs, dist_bfs)
+path_bfs, dist_bfs = search_algorithms.BFS(v,e,start_node+2,end_node+2)
+print(path_bfs, dist_bfs)
+path_bfs, dist_bfs = search_algorithms.BFS(v,e,start_node+3,end_node+3)
+print(path_bfs, dist_bfs)
+path_bfs, dist_bfs = search_algorithms.BFS(v,e,start_node+4,end_node+4)
+print(path_bfs, dist_bfs)
+path_dfs, dist_dfs = search_algorithms.DFS(v,e,start_node,end_node)
 print(path_dfs, dist_dfs)
+
+#print(e)

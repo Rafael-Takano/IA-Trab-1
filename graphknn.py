@@ -20,9 +20,17 @@ def generate_edges(n, k):
         for i in range(k):
             edges.append(-1)
 
-        aux = np.arange(0, n) # Cria um array com todos os vértices possíveis
-        aux = np.delete(aux, np.where(aux == currentNode)) # Remove o vértice atual das opções
+        aux = np.arange(currentNode + 1, n) # Cria um array com todos os vértices possíveis, os nós de iterações anteriores e o atual não entram nas opções
         np.random.shuffle(aux) # Embaralha os vértices aleatoriamente
+
+        #Prioriza vertices com menos arestas
+        #tmp = np.arange(0, 1) 
+        #for i in range(k):
+        #    for j in range(aux.size):
+        #        if (isFull[aux[j]] == i):
+        #            tmp = np.append(tmp, aux[j])
+        #aux = tmp
+        #aux = np.delete(aux, 0)
 
         count = 0
         #Caso um vertice anterior aponte para o vertice atual, adiciona o vertice anterior em suas arestas
@@ -31,7 +39,7 @@ def generate_edges(n, k):
                 if(edgesMatrix[i][j] == currentNode):
                     edges[count] = i
                     count += 1
-                    aux = np.delete(aux, np.where(aux == i)) # Remove o vértice adicionado das opções
+                    #aux = np.delete(aux, np.where(aux == i)) # Remove o vértice adicionado das opções
 
        #Adiciona arestas possiveis até que o vertice atual tenha k arestas              
         while(aux.size > 0 and isFull[currentNode] < k):

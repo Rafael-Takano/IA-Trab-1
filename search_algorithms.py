@@ -3,6 +3,8 @@ import queue
 
 def invert_list(list):
     list_end = []
+    if(len(list) == 0):
+        return list_end
     while len(list) > 1: 
         list_end.append(list[-1])
         list = list[0]
@@ -29,7 +31,6 @@ def DFS(v_list, e_list, v_start, v_end):
 
     visited = np.zeros(len(v_list))
     path, total_dist = recursiveDFS(v_list, e_list, v_start, v_end, visited)
-             
     return invert_list(path), total_dist
 
 def BFS(v_list, e_list, v_start, v_end): 
@@ -58,7 +59,6 @@ def BFS(v_list, e_list, v_start, v_end):
         if(path[-1] == memory[1]): 
             total_dist += dist_between_vertices(v_list, path[-1], memory[0])
             path = [path,memory[0]]
-
     return invert_list(path), total_dist
 
 def Best_First(v_list, e_list, v_start, v_end): 
