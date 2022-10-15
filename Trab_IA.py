@@ -14,5 +14,10 @@ import graphknn
 
 n, k = 50,5
 v, e = graphknn.generate_knn_graph(n,k)
-path, dist = search_algorithms.BFS(v,e,0,49)
-print(path,dist)
+start_node, end_node = 0, 49
+path_bfs, dist_bfs = search_algorithms.BFS(v,e,start_node,end_node)
+path_dfs, dist_dfs = search_algorithms.DFS(v,e,start_node,end_node)
+
+
+print(path_bfs, dist_bfs)
+print(path_dfs, dist_dfs)
