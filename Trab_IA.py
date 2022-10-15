@@ -12,7 +12,7 @@ import numpy as np
 import search_algorithms
 import graphknn  
 
-n, k = 5000, 7
+n, k = 5000,7
 v, e = graphknn.generate_knn_graph(n,k)
 start_node, end_node = 0, 1
 path_bfs, dist_bfs = search_algorithms.BFS(v,e,start_node,end_node)
