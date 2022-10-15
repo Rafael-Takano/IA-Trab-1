@@ -1,5 +1,6 @@
 import numpy as np
 import queue
+from queue import PriorityQueue
 
 def invert_list(list):
     list_end = []
@@ -127,6 +128,41 @@ def A_algorithm(v_list, e_list, v_start, v_end):
     return path, total_dist
     
 def A_star_algorithm(v_list, e_list, v_start, v_end): 
+    queue = PriorityQueue()
+    queue.put(v_start, 0)
+    came_from = np.array([None]*len(v_list))
+    cost_so_far = np.array([None]*len(v_list))
+    came_from[v_start] = None
+    cost_so_far[v_start] = 0
+    visited = np.zeros(len(v_list))
+    
+    while not queue.empty():
+        current = queue.get()
+        
+        if current == v_end:
+            break
+        
+        for next in e_list[current]:
+            new_cost = cost_so_far[current] + dist_between_vertices(v_list, current, next)
+            if visited[next] == 0 or new_cost < cost_so_far[next]:
+                cost_so_far[next] = new_cost
+                priority = new_cost + dist_between_vertices(v_list, next, v_end)
+                queue.put(next, priority)
+                came_from[next] = current
+                visited[next] = 1
+    
+    inverted_path = []
+    tmp = came_from[v_end]
+    count = 0
+    for i in range(len(came_from)):
+        inverted_path.append(tmp)
+        count += 1
+        if(tmp == v_start):
+            break 
+        tmp = came_from[tmp]   
+    
     path = []
-    total_dist = 0
-    return path, total_dist
+    for i in range(count):
+        path.append(inverted_path.pop())
+    path.append(v_end)
+    return path, cost_so_far
