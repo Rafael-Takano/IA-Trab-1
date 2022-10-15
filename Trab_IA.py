@@ -14,5 +14,5 @@ import graphknn
 
 n, k = 50,5
 v, e = graphknn.generate_knn_graph(n,k)
-path, dist = search_algorithms.DFS(v,e,0,49)
+path, dist = search_algorithms.BFS(v,e,0,49)
 print(path,dist)
