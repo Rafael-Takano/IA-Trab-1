@@ -28,9 +28,33 @@ def recursiveDFS(v_list, e_list, v_start, v_end, visited):
 def DFS(v_list, e_list, v_start, v_end): 
 
     visited = np.zeros(len(v_list))
-    path, total_dist = recursiveDFS(v_list, e_list, v_start, v_end, visited)
+    #path, total_dist = recursiveDFS(v_list, e_list, v_start, v_end, visited)
+    stack = []
+    memory = []
+
+    stack.append(v_start)
+    while stack:        
+        u = stack.pop()
+        if (not visited[u]):
+            visited[u] = 1
+            if(u == v_end): 
+                break
+            for w in e_list[u]: 
+                stack.append(w)
+                memory.append([u,w])
+    
+    if(visited[v_end]):
+        path = [v_end]
+        total_dist = 0
+        for memory in reversed(memory): 
+            if(path[-1] == memory[1]): 
+                total_dist += dist_between_vertices(v_list, path[-1], memory[0])
+                path = [path,memory[0]]
+
+        return invert_list(path), total_dist
+    
+    return [], -1
              
-    return invert_list(path), total_dist
 
 def BFS(v_list, e_list, v_start, v_end): 
     path = []
@@ -52,14 +76,15 @@ def BFS(v_list, e_list, v_start, v_end):
                 visited[w] = 1    
         if(visited[v_end]):
             break
+    if(visited[v_end]):
+        path = [v_end]
+        for memory in reversed(memo): 
+            if(path[-1] == memory[1]): 
+                total_dist += dist_between_vertices(v_list, path[-1], memory[0])
+                path = [path,memory[0]]
 
-    path = [v_end]
-    for memory in reversed(memo): 
-        if(path[-1] == memory[1]): 
-            total_dist += dist_between_vertices(v_list, path[-1], memory[0])
-            path = [path,memory[0]]
-
-    return invert_list(path), total_dist
+        return invert_list(path), total_dist
+    return [], -1
 
 def Best_First(v_list, e_list, v_start, v_end): 
     path = []
@@ -84,30 +109,15 @@ def Best_First(v_list, e_list, v_start, v_end):
         p_queue.sort(reverse=True)
         if(visited[v_end]):
             break
+    if(visited[v_end]):
+        path = [v_end]
+        for memory in reversed(memo): 
+            if(path[-1] == memory[1]): 
+                total_dist += dist_between_vertices(v_list, path[-1], memory[0])
+                path = [path,memory[0]]
 
-    path = [v_end]
-    for memory in reversed(memo): 
-        if(path[-1] == memory[1]): 
-            total_dist += dist_between_vertices(v_list, path[-1], memory[0])
-            path = [path,memory[0]]
-
-    return invert_list(path), total_dist
-    """procedure GBS(start, target) is:
-        mark start as visited
-        add start to queue
-        while queue is not empty do:
-            current_node ← vertex of queue with min distance to target
-            remove current_node from queue
-            foreach neighbor n of current_node do:
-            if n not in visited then:
-                if n is target:
-                return n
-                else:
-                mark n as visited
-                add n to queue
-        return failure 
-    """
-    return path, total_dist
+        return invert_list(path), total_dist
+    return [], -1    
 
 def A_algorithm(v_list, e_list, v_start, v_end): 
     path = []
