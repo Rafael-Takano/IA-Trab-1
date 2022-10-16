@@ -187,10 +187,9 @@ class KnnGraph:
         
         return None, None
 
-    def a_star(self, start, goal):
-        """ Busca A* com heurística de distância euclidiana. """
+    def __a(self, start, goal, h):
+        """ Busca A """
 
-        h = lambda n: n.dist(goal)  # Heurística: distância euclidiana do vértice atual ao vértice final
         queue = PriorityQueue()     # Fila de prioridade que armazena os vértices a serem visitados
         queue.put((h(start), start))
         came_from = {}              # Guarda o vértice anterior de cada vértice no caminho
@@ -220,6 +219,14 @@ class KnnGraph:
 
         # Fila vazia, não há caminho
         return None, None
+    
+    def a_half(self, start, goal):
+        """ Busca A* com heurística de distância euclidiana ao quadrado. """
+        return self.__a(start, goal, lambda n: n.dist(goal) / 2)
+    
+    def a_star(self, start, goal):
+        """ Busca A* com heurística de distância euclidiana. """
+        return self.__a(start, goal, lambda n: n.dist(goal))
 
     def unravel_came_from(self, came_from, current):
         """ Reconstrói o caminho a partir do dicionário came_from,
