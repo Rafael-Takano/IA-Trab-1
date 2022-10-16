@@ -106,7 +106,7 @@ class KnnGraph:
         
         return None, None # Vértice não foi encontrado
     
-    def recursive_dfs(self, start, goal):
+    def recursive_DFS(self, start, goal):
         """ Busca em profundidade. """
         path, dist =  self.__recursive_DFS(start, goal)
         return list(reversed(path)), dist

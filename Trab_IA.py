@@ -14,14 +14,15 @@ from timeit import default_timer as timer
 testing = [(10, 3), (10, 5)]
 deploy =  [(5000, 3), (5000, 5), (5000, 7)]
 
-with open('experimentos.txt', 'w') as f:
+with open('resumo.txt', 'w', encoding='utf-8') as f, open('dados.csv', 'w', encoding='utf-8') as g:
+    g.write('experimento,metodo,tempo,distancia\n')
     for experiment_num, experiment_values in enumerate(deploy):
         n, k = experiment_values
         f.write(f"=========== EXPERIMENTO {experiment_num+1}: n={n}, k={k} ==========\n\n")
-        knn = KnnGraph(10, 2)
+        knn = KnnGraph(n, k)
         methods = [
-            ("Depht-First", knn.iterative_DFS), 
-            ("Breadth-First", knn.BFS), 
+            ("Depht-First", knn.iterative_DFS),
+            ("Breadth-First", knn.BFS),
             ("Best-First", knn.best_first),
             ("A*", knn.a_star)]
         test_cases = knn.random_start_goals(20)
@@ -31,5 +32,8 @@ with open('experimentos.txt', 'w') as f:
             results = [method(start, goal) for start, goal in test_cases]
             results = [result for result in results if result[0] is not None] # remove None
             end = timer()
-            f.write(f"Tempo de execução: {end-start} segundos\n")
-            f.write(f"Distância média percorrida: {mean(result[1] for result in results)}\n\n")
+            execution_time = end - start
+            mean_distance = mean(result[1] for result in results)
+            f.write(f"Tempo de execução: {execution_time} segundos\n")
+            f.write(f"Distância média percorrida: {mean_distance}\n\n")
+            g.write(f"{experiment_num+1},{method_name},{execution_time},{mean_distance}\n")
