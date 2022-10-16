@@ -1,66 +1,66 @@
 =========== EXPERIMENTO 1: n=5000, k=3 ==========
 
 Depht-First:
-Tempo de execução: 0.1371333000006416 segundos
-Distância média percorrida: 4647485.993873527
+Tempo de execução: 0.1569003999902634 segundos
+Distância média percorrida: 4143366.035995141
 
 Breadth-First:
-Tempo de execução: 0.1770068000005267 segundos
-Distância média percorrida: 27566.208024908265
+Tempo de execução: 0.2674384999991162 segundos
+Distância média percorrida: 26037.10668365576
 
 Best-First:
-Tempo de execução: 0.3017677999996522 segundos
-Distância média percorrida: 104687.6305748165
+Tempo de execução: 0.5968180000054417 segundos
+Distância média percorrida: 95247.62306748868
 
 A Half:
-Tempo de execução: 5.545278400000825 segundos
-Distância média percorrida: 24295.65620073811
+Tempo de execução: 5.6948182999913115 segundos
+Distância média percorrida: 23122.417738292206
 
 A*:
-Tempo de execução: 4.151339199999711 segundos
-Distância média percorrida: 24295.65620073811
+Tempo de execução: 5.281653500001994 segundos
+Distância média percorrida: 22941.437038220014
 
 =========== EXPERIMENTO 2: n=5000, k=5 ==========
 
 Depht-First:
-Tempo de execução: 0.24243679999926826 segundos
-Distância média percorrida: 6169528.382175481
+Tempo de execução: 0.20891430000483524 segundos
+Distância média percorrida: 6052928.512914814
 
 Breadth-First:
-Tempo de execução: 0.24071729999923264 segundos
-Distância média percorrida: 17766.445972556205
+Tempo de execução: 0.19370750000234693 segundos
+Distância média percorrida: 16447.413684648433
 
 Best-First:
-Tempo de execução: 0.2646228000012343 segundos
-Distância média percorrida: 60116.00300510752
+Tempo de execução: 0.4883558000001358 segundos
+Distância média percorrida: 63100.68118029997
 
 A Half:
-Tempo de execução: 12.866562299999714 segundos
-Distância média percorrida: 13348.979696193774
+Tempo de execução: 9.9028263999935 segundos
+Distância média percorrida: 14110.60547011872
 
 A*:
-Tempo de execução: 8.42233060000035 segundos
-Distância média percorrida: 13348.979696193774
+Tempo de execução: 8.671449200002826 segundos
+Distância média percorrida: 13811.317248712476
 
 =========== EXPERIMENTO 3: n=5000, k=7 ==========
 
 Depht-First:
-Tempo de execução: 0.20483650000096532 segundos
-Distância média percorrida: 6546906.324171567
+Tempo de execução: 0.15285069998935796 segundos
+Distância média percorrida: 5447126.939815174
 
 Breadth-First:
-Tempo de execução: 0.15848840000035125 segundos
-Distância média percorrida: 13794.588305218265
+Tempo de execução: 0.1704098000045633 segundos
+Distância média percorrida: 14030.515302053587
 
 Best-First:
-Tempo de execução: 0.2618793999990885 segundos
-Distância média percorrida: 43578.77160951887
+Tempo de execução: 0.31102830001327675 segundos
+Distância média percorrida: 46832.353395478174
 
 A Half:
-Tempo de execução: 18.994338099999368 segundos
-Distância média percorrida: 10155.26557104213
+Tempo de execução: 6.211148400005186 segundos
+Distância média percorrida: 10170.47731880814
 
 A*:
-Tempo de execução: 9.718720000000758 segundos
-Distância média percorrida: 10155.26557104213
+Tempo de execução: 5.832722399994964 segundos
+Distância média percorrida: 9802.266406718229
 

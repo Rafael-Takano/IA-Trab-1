@@ -228,6 +228,18 @@ class KnnGraph:
         """ Busca A* com heurística de distância euclidiana. """
         return self.__a(start, goal, lambda n: n.dist(goal))
 
+    def a_dijkstra(self, start, goal):
+        """ Busca A* com heurística de distância 0. """
+        return self.__a(start, goal, lambda n: 0)
+    
+    def a_manhattan(self, start, goal):
+        """ Busca A* com heurística de distância de Manhattan. """
+        return self.__a(start, goal, lambda n: abs(n.x - goal.x) + abs(n.y - goal.y))
+    
+    def a_pessimist(self, start, goal):
+        """ Busca A com heurística pessimista. (Distancia Manhattan com peso 2 no eixo X)"""
+        return self.__a(start, goal, lambda n: 2*abs(n.x - goal.x) + abs(n.y - goal.y))
+
     def unravel_came_from(self, came_from, current):
         """ Reconstrói o caminho a partir do dicionário came_from,
         que é basicamente uma lista encadeada de vértices. """

@@ -24,7 +24,7 @@ with open('resumo.txt', 'w', encoding='utf-8') as f, open('dados.csv', 'w', enco
             ("Depht-First", knn.iterative_DFS),
             ("Breadth-First", knn.BFS),
             ("Best-First", knn.best_first),
-            ("A Half", knn.a_half),
+            ("A Half", knn.a_pessimist),
             ("A*", knn.a_star)]
         test_cases = knn.random_start_goals(20)
         for method_name, method in methods:
