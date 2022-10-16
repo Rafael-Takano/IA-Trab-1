@@ -3,33 +3,33 @@
 
 # 
 #
-# Rafael Kuhn Takano    11200459
-# Vitor Amim            11218772
+# Rafael Kuhn Takano        11200459
+# Vinicius S. F. Kuhlmann   11215751
+# Vitor Amim                11218772
 
+from graphknn import KnnGraph
+from statistics import mean
+from timeit import default_timer as timer
 
-import random
-import numpy as np
-import search_algorithms
-import graphknn  
+testing = [(10, 3), (10, 5)]
+deploy =  [(5000, 3), (5000, 5), (5000, 7)]
 
-n, k = 5000,7
-v, e = graphknn.generate_knn_graph(n,k)
-start_node, end_node = 0, 1
-
-#print(e)
-path_bfs, dist_bfs = search_algorithms.BFS(v,e,start_node,end_node)
-print(path_bfs, dist_bfs)
-#path_bfs, dist_bfs = search_algorithms.BFS(v,e,start_node+1,end_node+1)
-#print(path_bfs, dist_bfs)
-#path_bfs, dist_bfs = search_algorithms.BFS(v,e,start_node+2,end_node+2)
-#print(path_bfs, dist_bfs)
-#path_bfs, dist_bfs = search_algorithms.BFS(v,e,start_node+3,end_node+3)
-#print(path_bfs, dist_bfs)
-#path_bfs, dist_bfs = search_algorithms.BFS(v,e,start_node+4,end_node+4)
-#print(path_bfs, dist_bfs)
-#path_dfs, dist_dfs = search_algorithms.DFS(v,e,start_node,end_node)
-#print(path_dfs, dist_dfs)
-
-path_A_star, dist_A_star = search_algorithms.A_star_algorithm(v,e,start_node,end_node)
-print(path_A_star, dist_A_star[end_node])
-
+with open('experimentos.txt', 'w') as f:
+    for experiment_num, experiment_values in enumerate(deploy):
+        n, k = experiment_values
+        f.write(f"=========== EXPERIMENTO {experiment_num+1}: n={n}, k={k} ==========\n\n")
+        knn = KnnGraph(10, 2)
+        methods = [
+            ("Depht-First", knn.iterative_DFS), 
+            ("Breadth-First", knn.BFS), 
+            ("Best-First", knn.best_first),
+            ("A*", knn.a_star)]
+        test_cases = knn.random_start_goals(20)
+        for method_name, method in methods:
+            f.write(f"{method_name}:\n")
+            start = timer()
+            results = [method(start, goal) for start, goal in test_cases]
+            results = [result for result in results if result[0] is not None] # remove None
+            end = timer()
+            f.write(f"Tempo de execução: {end-start} segundos\n")
+            f.write(f"Distância média percorrida: {mean(result[1] for result in results)}\n\n")
