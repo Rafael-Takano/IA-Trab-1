@@ -6,7 +6,6 @@ precis ̃ao, eficiencia entre outros. Os experimentos ser ̃ao efetuados em graf
 onados variando em valores de n ́umero de v ́ertices (N) e n ́umero m ́edio de arestas por vertice
 (K).
 
----
 ## Código fonte
 
 Os arquivos contendo o código fonte escrito em python são os seguintes: 
@@ -39,3 +38,10 @@ Para rodar os experimentos deve-se executar:
 `python3 Experimento1.py`
 
 `python3 Trab_IA.py`
+
+## Alunos 
+
+- Matheus Bermudes Viana (11849797)
+- Rafael Kuhn Takano (11200459)
+- Vinicius S. F. Kuhlmann (11215751)
+- Vitor Amim (11218772)
