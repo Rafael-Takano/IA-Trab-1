@@ -237,8 +237,8 @@ class KnnGraph:
         return self.__a(start, goal, lambda n: abs(n.x - goal.x) + abs(n.y - goal.y))
     
     def a_pessimist(self, start, goal):
-        """ Busca A com heurística pessimista. (Distancia Manhattan com peso 2 no eixo X)"""
-        return self.__a(start, goal, lambda n: 2*abs(n.x - goal.x) + abs(n.y - goal.y))
+        """ Busca A com heurística pessimista. (Distancia Manhattan com peso 10 no eixo X)"""
+        return self.__a(start, goal, lambda n: 10*abs(n.x - goal.x) + abs(n.y - goal.y))
 
     def unravel_came_from(self, came_from, current):
         """ Reconstrói o caminho a partir do dicionário came_from,
@@ -255,7 +255,7 @@ class KnnGraph:
         """ Reconstrói o caminho percorrido a partir de vértices visitados por um algoritmo de busca. 
         
         Para encontrar o caminho, percorre a memória de trás para frente,
-        adicionando somente os vértices cuja lista de adjacência conter
+        adicionando somente os vértices cuja lista de adjacência contem
         o vértice adicionado mais recentemente ao caminho. """
         path = [goal]
         dist = 0
