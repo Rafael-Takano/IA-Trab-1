@@ -1,0 +1,42 @@
+=========== EXPERIMENTO 1: n=5000, k=3 ==========
+
+A:
+Tempo de execução: 8.820897199999308 segundos
+Distância média percorrida: 28774.825998309625
+
+A*:
+Tempo de execução: 4.847841300012078 segundos
+Distância média percorrida: 24873.93832456651
+
+Dijkstra:
+Tempo de execução: 6.359465399989858 segundos
+Distância média percorrida: 24873.93832456651
+
+=========== EXPERIMENTO 2: n=5000, k=5 ==========
+
+A:
+Tempo de execução: 11.380010799999582 segundos
+Distância média percorrida: 15737.22997362001
+
+A*:
+Tempo de execução: 3.563318000000436 segundos
+Distância média percorrida: 12522.32479529177
+
+Dijkstra:
+Tempo de execução: 11.248512500023935 segundos
+Distância média percorrida: 12522.32479529177
+
+=========== EXPERIMENTO 3: n=5000, k=7 ==========
+
+A:
+Tempo de execução: 17.804874499997823 segundos
+Distância média percorrida: 14859.066436490233
+
+A*:
+Tempo de execução: 10.136805000016466 segundos
+Distância média percorrida: 10155.180253020939
+
+Dijkstra:
+Tempo de execução: 21.832565999997314 segundos
+Distância média percorrida: 10155.180253020939
+
