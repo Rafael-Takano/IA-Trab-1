@@ -16,7 +16,7 @@ deploy =  [(5000, 3), (5000, 5), (5000, 7)]
 
 with open('resumo.txt', 'w', encoding='utf-8') as f, open('dados.csv', 'w', encoding='utf-8') as g:
     g.write('experimento,metodo,tempo,distancia\n')
-    for experiment_num, experiment_values in enumerate(deploy):
+    for experiment_num, experiment_values in enumerate(testing):
         n, k = experiment_values
         f.write(f"=========== EXPERIMENTO {experiment_num+1}: n={n}, k={k} ==========\n\n")
         knn = KnnGraph(n, k)
@@ -24,7 +24,7 @@ with open('resumo.txt', 'w', encoding='utf-8') as f, open('dados.csv', 'w', enco
             ("Depht-First", knn.iterative_DFS),
             ("Breadth-First", knn.BFS),
             ("Best-First", knn.best_first),
-            ("A Half", knn.a_pessimist),
+            ("A Pessimist", knn.a_pessimist),
             ("A*", knn.a_star)]
         test_cases = knn.random_start_goals(20)
         for method_name, method in methods:

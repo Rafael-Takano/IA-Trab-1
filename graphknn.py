@@ -69,8 +69,8 @@ class KnnGraph:
         import matplotlib.pyplot as plt
         plt.figure(figsize=(10, 10))
         for vertex in self.vertices:
-            plt.scatter(*vertex, color='red', s=30)
-            plt.text(*vertex, f"{vertex}", fontsize=8)
+            plt.scatter(vertex.x, vertex.y, color='red', s=30)
+            plt.text(vertex.x, vertex.y, f"{vertex}", fontsize=8)
         for vertex, edge in self.edges.items():
             for neighbour in edge:
                 plt.plot(*zip(vertex, neighbour), c='black', alpha=0.2)
@@ -88,7 +88,7 @@ class KnnGraph:
             start_goals.append((start, goal))
         return start_goals
     
-    def __recursive_DFS(self, start, goal, visited=None):
+    def __recursive_DFS(self, start, goal, visited=None) -> tuple:
         """ Busca em profundidade recursiva. """
         if start == goal:
             return [goal], start.dist(goal) # Retorna o caminho e a distância
@@ -129,7 +129,7 @@ class KnnGraph:
                 continue
             visited.add(vertex)
             if vertex == goal:
-                return self.reconstruct_path(goal, memory)
+                return self.__reconstruct_path(goal, memory)
             stack += self.edges[vertex] # Adiciona os vizinhos ao topo da pilha
             memory.append(vertex)
         
@@ -156,7 +156,7 @@ class KnnGraph:
                     continue
                 visited.add(neighbor)
                 if neighbor == goal: # Vértice final encontrado
-                    return self.reconstruct_path(goal, memory)
+                    return self.__reconstruct_path(goal, memory)
                 queue.put(neighbor)
         
         return None, None
@@ -181,7 +181,7 @@ class KnnGraph:
                     continue
                 visited.add(neighbor)
                 if neighbor == goal: # Vértice final encontrado
-                    return self.reconstruct_path(goal, memory)
+                    return self.__reconstruct_path(goal, memory)
                 priority = neighbor.dist(goal)
                 queue.put((priority, neighbor)) # Adiciona a distância ao vértice final como prioridade
         
@@ -205,7 +205,7 @@ class KnnGraph:
         while not queue.empty():
             current = queue.get()[1] # Vértice com o menor f_score
             if current == goal:
-                return self.unravel_came_from(came_from, current)
+                return self.__unravel_came_from(came_from, current)
             for neighbor in self.edges[current]:
                 g_score_candidate = g_score[current] + current.dist(neighbor)
                 if g_score_candidate >= g_score[neighbor]: # O novo caminho não é melhor que o anterior
@@ -240,7 +240,7 @@ class KnnGraph:
         """ Busca A com heurística pessimista. (Distancia Manhattan com peso 10 no eixo X)"""
         return self.__a(start, goal, lambda n: 10*abs(n.x - goal.x) + abs(n.y - goal.y))
 
-    def unravel_came_from(self, came_from, current):
+    def __unravel_came_from(self, came_from, current):
         """ Reconstrói o caminho a partir do dicionário came_from,
         que é basicamente uma lista encadeada de vértices. """
         path = [current]
@@ -251,7 +251,7 @@ class KnnGraph:
             path.append(current)
         return list(reversed(path)), dist
 
-    def reconstruct_path(self, goal, memory):
+    def __reconstruct_path(self, goal, memory):
         """ Reconstrói o caminho percorrido a partir de vértices visitados por um algoritmo de busca. 
         
         Para encontrar o caminho, percorre a memória de trás para frente,
